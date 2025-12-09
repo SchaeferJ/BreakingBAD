@@ -22,7 +22,7 @@ If you prefer to run the code directly on your machine, requirements.txt lists t
 1) Install Docker by following the [official instructions](https://docs.docker.com/get-started/get-docker/).
 2) Open a terminal, navigate to this repository and run ``docker build -t saul:1.0 ./``.
 3) Wait a few minutes while Docker builds the image.
-4) Run ``docker run -it --gpus all --name gma-artifact saul:1.0`` in your terminal.
+4) Run ``docker run -it --gpus all --name saul-artifact saul:1.0`` in your terminal.
 5) That's it!
 
 If everything worked, you should now see a shell connected to your docker container. It looks something like
