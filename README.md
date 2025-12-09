@@ -43,3 +43,35 @@ resume working with the container you already created.
 
 **A note for Windows users:** Make sure to select WSL2 as the subsystem for Docker, otherwise
 you won't be able to use the GPU.
+
+___
+## Code Files
+
+- ``hgma_bad_benchmark.py`` runs the HGMA-Attack against BAD encoded data.
+- ``hgma_saul_benchmark.py`` runs the HGMA-Attack against SAUL encoded data.
+- ``indistinguishability_experiments.py`` conducts the indistinguishability experiments as outlined in the security definition for BAD and SAUL. 
+- ``matching_benchmark.py`` evaluates the linkage quality of SAUL, BAD and Bloom Filters.
+- ``bad_utils.py`` contains various helper functions.
+
+___
+## Data
+The ``data`` directory contains all Fake Name-Datasets used in the paper. Due to their size, they are stores as a compressed .tar.xz-File. 
+You may have to install additional software, e.g. 7Zip, to unpack the files.
+
+Note that the Euro-Datasets are not included in this repository, as their licensing is unclear. You can obtain them directly from the website
+of the European Commission via this archive link: [https://web.archive.org/web/20221116153814/https://ec.europa.eu/eurostat/cros/content/job-training](https://web.archive.org/web/20221116153814/https://ec.europa.eu/eurostat/cros/content/job-training)
+
+___
+## Licensing
+All code provided in this repository is licensed under the GPLv3.
+The datasets provided as part of this repository are based on identities generated with the [Fake Name Generator :tm:](https://www.fakenamegenerator.com).
+````
+The Fake Name Generator identities is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+Pursuant to section 7 of the GPL, we require that you attribute Fake Name Generator <https://www.fakenamegenerator.com> for any information you use from the Fake Name Generator website.
+````
+A copy of the GPL is included in this repository's root directory.
