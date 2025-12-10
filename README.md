@@ -5,7 +5,8 @@ This repository contains the accompanying artifacts for the paper
 *Breaking BAD? Better Call SAUL! – Breaking and Fixing Bloom Filters with Added Diffusion*
 
 to be presented at PETS 2026, Calgary, Canada.
-Please follow the instructions below to set up your system.
+The artifact appendix can be found [here](./ARTIFACT-APPENDIX.md).
+Please follow the instructions below to set up your system. 
 ___
 ## System Requirements
 You will need a GPU to run the experiments described in our paper. The larger the datasets you want to run our code on,
