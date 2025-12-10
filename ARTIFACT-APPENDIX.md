@@ -1,105 +1,73 @@
-# Artifact Appendix (Required for all badges)
+# Artifact Appendix
 
-Paper title: **Enter the exact title of your PETS accepted paper here**
+Paper title: **Breaking BAD? Better Call SAUL! - Breaking and Fixing Bloom Filters with Added Diffusion**
 
 Requested Badge(s):
-  - [ ] **Available**
+  - [X] **Available**
   - [ ] **Functional**
   - [ ] **Reproduced**
 
-Authors can provide this content _either_ as a separate file in their artifact
-_or_ as part of their existing documentation (e.g., `README.md`). In the latter
-case, you should have the same section titles as in this template.
-
-This template includes several placeholders. When filling in this template for
-their artifact, the authors should:
-
-1. Remove this note.
-2. Delete the sections that are _not_ required for the badge(s) they are
-   applying for.
-3. Omit suffixes of the form "(required/encouraged for badge ...)" from the
-   section titles.
-4. Authors should not leave the placeholder descriptions initially provided with
-   this file into the submitted version with their artifact.
-
-While this template is provided for artifact review, you should write your
-instructions for someone trying to reuse your artifact in the future (i.e., not
-an artifact reviewer).
-
-## Description (Required for all badges)
+## Description 
 Replace this with the following:
 
-1. List the paper that the artifact relates to (i.e., paper title, authors,
-   year, or even a BibTex cite).
-2. A short description of your artifact and how it is relevant to your paper.
+This repository contains the accompanying artifacts for the paper
 
-### Security/Privacy Issues and Ethical Concerns (Required for all badges)
+*Breaking BAD? Better Call SAUL! – Breaking and Fixing Bloom Filters with Added Diffusion*
 
-Replace this with a description of security or privacy risks that your artifact
-may hold for the machine of the person trying to evaluate or reuse your
-artifact. This is especially relevant for artifacts that _disable a security
-mechanism_, such as a firewall, ASLR, etc., to demonstrate an attack, as well as
-to artifacts that _run vulnerable code_, such as exploits, malware samples,
-etc., to demonstrate a vulnerability.
+to be presented at PETS 2026, Calgary, Canada.
+The artifact contains the entire source code of the experiments described in our paper, as well as a reference implementation of your newly proposed scheme.
+Datasets are provided if their licensing permits it. For non-free datasets a download link is included in the ReadMe-File.
+The following code files will run the experiments:
 
-User study artifacts that include anonymized transcripts or survey responses
-should list the ethical review / IRB process followed to obtain participants'
-consent to publishing this anonymized dataset. They may also list how
-participants were compensated.
+- ``hgma_bad_benchmark.py`` runs the HGMA-Attack against BAD encoded data.
+- ``hgma_saul_benchmark.py`` runs the HGMA-Attack against SAUL encoded data.
+- ``indistinguishability_experiments.py`` conducts the indistinguishability experiments as outlined in the security definition for BAD and SAUL. 
+- ``matching_benchmark.py`` evaluates the linkage quality of SAUL, BAD and Bloom Filters.
+- ``bad_utils.py`` contains various helper functions.
 
-## Basic Requirements (Required for Functional and Reproduced badges)
+If you are interested in (re-)using the reference implementation of SAUL, you can find it in ``./encoders/saul_encoder.py``.
 
-For both sections below, if you are giving reviewers remote access to special
-hardware (e.g., Intel SGX v2.0) or proprietary software (e.g., Matlab R2025a)
-for the purpose of the artifact evaluation, do not provide these instructions
-here but rather in the corresponding submission field on HotCRP.
+### Security/Privacy Issues and Ethical Concerns
 
-### Hardware Requirements (Required for Functional and Reproduced badges)
+To the best of our knowledge, there are no adverse affects of running our artifact. It does not interfere with your system configuration.
 
-Replace this with the following:
+## Basic Requirements 
 
-1. A list of the _minimal hardware requirements_ to execute your artifact. If no
-   specific hardware is needed, then state "Can run on a laptop (No special
-   hardware requirements)". You may state how a researcher could gain access to
-   that hardware, e.g., by buying, renting, or even emulating it.
-2. When applying for the "Reproduced" badge, list _the specifications of the
-   hardware_ on which the experiments reported in the paper were performed. This
-   is especially relevant in cases were results might be influenced by the
-   hardware used (e.g., latency, bandwidth, throughput experiments, etc.).
+### Hardware Requirements
 
-### Software Requirements (Required for Functional and Reproduced badges)
+You will need a GPU to run the experiments described in our paper. The larger the datasets you want to run our code on,
+the more powerful the system has to be. To fully replicate our results you will need:
+- \>= 128 GB of RAM.
+- \>= 20 GB of disk space (HDD sufficient).
+- A CUDA-enabled GPU with \>= 24 GB of VRAM is strongly recommended. Make sure that your GPU has a [compute capability](https://developer.nvidia.com/cuda-gpus) >= 3.7.
 
-Replace this with the software required to run your artifact and its versions,
-as follows.
+Using the reference implementation of SAUL only is not particularly demanding. It should run well on a modern laptop.
 
-1. List the OS you used to run your artifact, along with its version (e.g.,
-   Ubuntu 22.04). If your artifact can only run on a specific OS or a specific
-   OS version, list it and explain why here. In general, your artifact reviewers
-   will probably have access to a machine with a different OS or different OS
-   version than yours; they should still be able to run appropriately packaged
-   artifacts.
-2. List the OS packages that your artifact requires, along with their versions.
-3. Artifact packaging: If you use a container runtime (e.g., Docker) to run the
-   artifact, list the container runtime and its version (e.g., Docker 23.0.3).
-   If you use VMs, list the hypervisor (e.g., VirtualBox) to run the artifact.
-4. List the programming language compiler or interpreter you used to run your
-   artifact (e.g., Python 3.13.7). Your Docker image or VM image should have
-   this version of the programming languages installed already. Your Dockerfile
-   should start from a base image with this programming language version.
-5. List packages that your artifact depends on, along with their versions. For
-   example, Python-based privacy-preserving machine learning artifacts typically
-   require `numpy`, `scipy`, etc. You may point to a file in your artifact with
-   this list, such as a `requirements.txt` file. If you rely on proprietary
-   software (e.g. Matlab R2025a), list this here and consider providing access
-   to reviewers through HotCRP.
-6. List any Machine Learning Models required to run your artifact, along with
-   their versions. If your model is hosted on a different repository, such as on
-   Zenodo, then your artifact should download it automatically (same for
-   datasets). If a required ML model is _not_ in your artifact, provide a dummy
-   model to demonstrate the functionality of the rest of your artifact.
-7. List any datasets required to run your artifact. If any required dataset is
-   not in your artifact, you should provide a synthetic dataset that showcases
-   the expected data format.
+### Software Requirements
+
+You will need the following Software requirements:
+
+- CUDA
+- Python >= 3.11
+- Libraries as listed in requirements.txt 
+
+The following instructions are designed for running the code on a bare-metal Ubuntu 24.04 LTS. Note that we recommend running our code in Docker (See Section Environment).
+
+**1. Install System Dependencies**
+1) If you want to use the GPU, run ``nvidia-smi`` to check if you have a GPU driver installed. If not, install the [latest version](https://www.nvidia.com/download/index.aspx).
+2) Install Python and pip if necessary. On Ubuntu/Debian run ``sudo apt install python3 python3-pip``.
+3) Make sure that you have ``pkg-config`` and FreeType installed. Otherwise, the installation of matplotlib might fail. On Ubuntu/Debian run ``sudo apt install pkg-config libfreetype6-dev``.
+4) Install the g++ compiler for improved performance. On Ubuntu run ``sudo apt install g++``.
+5) Install the [oneAPI Math Kernel Library](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html). On Ubuntu run ``sudo apt install intel-mkl``.
+
+**2. Install Python Dependencies**
+We recommend using a [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
+for package management to avoid version conflicts.
+1) Install [PyTorch](https://pytorch.org/get-started/locally/). If you want to use the GPU, choose the latest (highest) 
+CUDA version. Otherwise, select CPU. 
+2) Run ``pip install -r requirements.txt`` to install the remaining dependencies.
+3) [Verify](https://pytorch.org/get-started/locally/#linux-verification) your install.
+
 
 ### Estimated Time and Storage Consumption (Required for Functional and Reproduced badges)
 
@@ -112,160 +80,61 @@ This helps reviewers schedule the evaluation in their time plan and others in
 general to see if everything is running as intended. This should also be
 specified at a finer granularity for each experiment (see below).
 
-## Environment (Required for all badges)
+## Environment
 
-In the following, describe how to access your artifact and all related and
-necessary data and software components. Afterward, describe how to set up
-everything and how to verify that everything is set up correctly.
+We recommend running our code in a Docker container, as this means you won't have to worry about
+dependencies or version conflicts.
+If you prefer to run the code directly on your machine, follow the instructions provided above.
 
-### Accessibility (Required for all badges)
+You may install Docker by following the [official instructions](https://docs.docker.com/get-started/get-docker/).
 
-Replace the following by a description of how to access your artifact via
-persistent sources. Valid hosting options are institutional and third-party
-digital repositories (e.g., GitHub, Gitlab, BitBucket, Zenodo, Figshare, etc.).
-Please do not use personal web pages or cloud storage services like Google
-Drive, Dropbox, etc.
+**A note for Windows users:** Make sure to select WSL2 as the subsystem for Docker, otherwise
+you won't be able to use the GPU.
 
-Note that once your artifact evaluation is finalized and a badge decision has
-been made, artifact chairs will collect a stable and persistent reference to
-your artifact to list on the website. For version-controlled repositories (e.g.,
-Git repositories), this will be a specific commit-id or tag.
+### Accessibility
 
-You _should not_ link to a specific commit here at submission time, as changes
-will likely happen during the evaluation process to address the reviewers'
-feedback, resulting in the link being out-of-date. Instead, you may link to the
-latest commit in your branch (e.g. main) as follows:
-https://github.com/PoPETS-AEC/example-docker-python-pip/tree/main
+The artifact is publicly availabe on GitHub:
+[https://github.com/SchaeferJ/BreakingBAD](https://github.com/SchaeferJ/BreakingBAD)
 
-### Set up the environment (Required for Functional and Reproduced badges)
+### Set up the environment
 
-Replace the following by a description of how one should set up the environment
-for your artifact, including downloading and installing dependencies and the
-installation of the artifact itself (i.e., from the very first download or clone
-command one should perform). Be as specific as possible here. If possible, use
-code segments to simplify the workflow, e.g.,
+1) Clone this repository: ``git clone https://github.com/SchaeferJ/BreakingBAD``
+2) Open a terminal, navigate to this repository and run ``docker build -t saul:1.0 ./``.
+3) Wait a few minutes while Docker builds the image.
+4) Run ``docker run -it --gpus all --name saul-artifact saul:1.0`` in your terminal.
+5) That's it!
 
-```bash
-git clone git@github.com:PoPETS-AEC/example-docker-python-pip.git
-docker build -t example-docker-python-pip:main .
-```
+If everything worked, you should now see a shell connected to your docker container. It looks something like
+
+``root@bfeff35dda4a:/usr/app# ``
+
+Type ``ls`` to view the contents of the directory you're currently in. The output should look like this:
+````
+ aligners       embedders     encoders                matchers
+ bad_utils      Dockerfile    hgma_bad_benchmark.py   hgma_bad_benchmark.py
+ ````
+You can interact with the docker container just like with any other Linux OS.
+To exit the docker container, simply type ``exit`` into the terminal and hit enter.
+
+**Note:** ``docker run`` will always create a new docker container, so you do not have access
+to any files you created in previous runs. Use ``docker start -i saul-artifact`` instead to
+resume working with the container you already created.
 
 Describe the expected results where it makes sense to do so.
 
-### Testing the Environment (Required for Functional and Reproduced badges)
+## Limitations
 
-Replace the following by a description of the basic functionality tests to check
-if the environment is set up correctly. These tests could be unit tests,
-training an ML model on very low training data, etc. If these tests succeed, all
-required software should be functioning correctly. Use code segments to simplify
-the workflow, e.g.,
+Note that the following experiments involve randomness:
 
-Launch the Docker container, attach the current working directory (i.e., run
-from the root of the cloned git repository) as a volume, set the context to be
-that volume, and provide an interactive bash terminal:
+- The H-GMA relies on random walks and random initialization of embeddings.
+- The indistinguishability experiments rely on randomly generated datasets.
 
-```bash
-docker run --rm -it -v ${PWD}:/workspaces/example-docker-python-pip \
-    -w /workspaces/example-docker-python-pip \
-    --entrypoint bash example-docker-python-pip:main
-```
+Not all randomness can be controlled by setting a seed. For instance, the Random Walks will always slightly differ, even if all seeds are kept constant.
+This is a known issue of the underlying PecanPy-Library. For fully deterministic results, the node2vec library has to be used and multiprocessing must be 
+disabled, both of which would cause a severe degradation of performance.
+Hence, results obtained from running this artifact might (slightly) differ from the ones reported in the paper. 
 
-Then within the Docker container, run:
+## Notes on Reusability
 
-```bash
-./test.sh
-```
-
-Include the expected output.
-
-## Artifact Evaluation (Required for Functional and Reproduced badges)
-
-This section should include all the steps required to evaluate your artifact's
-functionality and validate your paper's key results and claims. Therefore,
-highlight your paper's main results and claims in the first subsection. And
-describe the experiments that support your claims in the subsection after that.
-
-### Main Results and Claims
-
-List all your paper's results and claims that are supported by your submitted
-artifacts.
-
-#### Main Result 1: Name
-
-Describe the results in 1 to 3 sentences. Mention what the independent and
-dependent variables are; independent variables are the ones on the x-axes of
-your figures, whereas the dependent ones are on the y-axes. By varying the
-independent variable (e.g., file size) in a given manner (e.g., linearly), we
-expect to see trends in the dependent variable (e.g., runtime, communication
-overhead) vary in another manner (e.g., exponentially). Refer to the related
-sections, figures, and/or tables in your paper and reference the experiments
-that support this result/claim. See example below.
-
-#### Main Result 2: Example Name
-
-Our paper claims that when varying the file size linearly, the runtime also
-increases linearly. This claim is reproducible by executing our
-[Experiment 2](#experiment-2-example-name). In this experiment, we change the
-file size linearly, from 2KB to 24KB, at intervals of 2KB each, and we show that
-the runtime also increases linearly, reaching at most 1ms. We report these
-results in "Figure 1a" and "Table 3" (Column 3 or Row 2) of our paper.
-
-### Experiments
-List each experiment to execute to reproduce your results. Describe:
- - How to execute it in detailed steps.
- - What the expected result is.
- - How long it takes to execute in human and compute times (approximately).
- - How much space it consumes on disk (approximately) (omit if <10GB).
- - Which claim and results does it support, and how.
-
-#### Experiment 1: Name
-- Time: replace with estimate in human-minutes/hours + compute-minutes/hours.
-- Storage: replace with estimate for disk space used (omit if <10GB).
-
-Provide a short explanation of the experiment and expected results. Describe
-thoroughly the steps to perform the experiment and to collect and organize the
-results as expected from your paper (see example below). Use code segments to
-simplify the workflow, as follows.
-
-```bash
-python3 experiment_1.py
-```
-
-#### Experiment 2: Example Name
-
-- Time: 10 human-minutes + 3 compute-hours
-- Storage: 20GB
-
-This example experiment reproduces
-[Main Result 2: Example Name](#main-result-2-example-name), the following script
-will run the simulation automatically with the different parameters specified in
-the paper. (You may run the following command from the example Docker image.)
-
-```bash
-python3 main.py
-```
-
-Results from this example experiment will be aggregated over several iterations
-by the script and output directly in raw format along with variances and
-standard deviations in the `output-folder/` directory. You will also find there
-the plots for "Figure 1a" in `.pdf` format and the table for "Table 3" in `.tex`
-format. These can be directly compared to the results reported in the paper, and
-should not quantitatively vary by more than 5% from expected results.
-
-
-## Limitations (Required for Functional and Reproduced badges)
-
-Describe which steps, experiments, results, graphs, tables, etc. are _not
-reproducible_ with the provided artifact. Explain why this is not
-included/possible and argue why the artifact should _still_ be evaluated for the
-respective badges.
-
-## Notes on Reusability (Encouraged for all badges)
-
-First, this section might not apply to your artifacts. Describe how your
-artifact can be used beyond your research paper, e.g., as a general framework.
-The overall goal of artifact evaluation is not only to reproduce and verify your
-research but also to help other researchers to re-use and extend your artifacts.
-Discuss how your artifacts can be adapted to other settings, e.g., more input
-dimensions, other datasets, and other behavior, through replacing individual
-modules and functionality or running more iterations of a specific module.
+The artifact is fully reusable. Attacks can be run against other encoding schemes, as long as their implementations follow the abstract class provided.
+The reference implementation of SAUL is provided as a separate module and can be used for encoding arbitraty textual data.
